@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="UTILIZADOR">
+        <menu>
+            <item android:title="Perfil" android:icon="@drawable/ic_pessoa"/>
+            <item android:title="Favoritos" android:icon="@drawable/ic_favoritos"/>
+            <item android:title="Comentários" android:icon="@drawable/ic_comentario"/>
+            <item android:title="Alterar palavra-passe" android:icon="@drawable/ic_cadeado"/>
+        </menu>
+    </item>
+    <item android:title="SESSÃO">
+        <menu>
+            <item android:title="Terminar sessão" android:icon="@drawable/ic_logout"/>
+        </menu>
+    </item>
+
+</menu>
