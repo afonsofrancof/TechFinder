@@ -75,19 +75,32 @@ class MainActivity : AppCompatActivity() ,NavigationView.OnNavigationItemSelecte
 
     override fun onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START)
+            drawerLayout.closeDrawers();
         }else{
             super.onBackPressed()
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Log.i("degubthis","perfil");
         when(item.itemId){
 
             R.id.perfil -> {
-                navController.navigate(R.id.lojaInfoFragment)
-                drawerLayout.closeDrawer(GravityCompat.START)
+                navController.navigate(R.id.perfilFragment)
+                drawerLayout.closeDrawers();
+            }
+            R.id.favoritos -> {
+                navController.navigate(R.id.favoritosFragment)
+                drawerLayout.closeDrawers();
+            }
+            R.id.comentarios -> {
+                navController.navigate(R.id.comentariosFragment)
+                drawerLayout.closeDrawers();
+            }
+            R.id.alterar_palavra_passe -> {
+                //pop up para alterar pass
+            }
+            R.id.logout -> {
+                //dar logout
             }
         }
         return true

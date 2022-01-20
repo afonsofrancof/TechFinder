@@ -1,6 +1,8 @@
 package com.example.techfinder.utils
 
 import User
+import com.example.techfinder.objects.LojaPreview
+import com.example.techfinder.objects.User
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.ObjectInputStream
@@ -12,21 +14,33 @@ class DbAPI {
         client = Socket("192.168.0.107", 8888)
     }
 
-
-
     fun getUser(username: String) : User? {
 
         val dos = DataOutputStream(client.getOutputStream())
         dos.writeUTF("getUser")
         dos.writeUTF(username)
         dos.flush();
-        System.out.flush()
         val din = DataInputStream(client.getInputStream())
-        val o = ObjectInputStream(din)
-        var u = o.readObject() as User
+        val username: String = din.readUTF();
+        val nome: String = din.readUTF();
+        val password: String = din.readUTF();
+        val morada: String = din.readUTF();
+        val email: String = din.readUTF();
+        var user : User = User(username,nome,email,password,morada)
         client.close()
-        if(u!=null){return u}else{return null}
+        if(user!=null){return user}else{return null}
 
+    }
 
+    fun getLojasPreview(){
+        val dos = DataOutputStream(client.getOutputStream())
+        dos.writeUTF("getLojasPreview")
+        dos.flush()
+        val din = DataInputStream(client.getInputStream())
+        val nlojas = din.readInt()
+        var listLojas : List<LojaPreview> = ArrayList()
+        for(i in nlojas downTo 1){
+
+        }
     }
 }

@@ -9,13 +9,25 @@
         android:id="@+id/shopsFeedFragment"
         android:name="com.example.techfinder.fragments.ShopsFeedFragment"
         android:label="ShopsFeedFragment" >
-        <action
-            android:id="@+id/action_shopsFeedFragment_to_lojaInfoFragment"
-            app:destination="@id/lojaInfoFragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_loja_info"
         android:id="@+id/lojaInfoFragment"
         android:name="com.example.techfinder.fragments.LojaInfoFragment"
         android:label="LojaInfoFragment" />
+    <fragment
+        tools:layout="@layout/fragment_comentarios"
+        android:id="@+id/comentariosFragment"
+        android:name="com.example.techfinder.fragments.ComentariosFragment"
+        android:label="ComentariosFragment" />
+    <fragment
+        tools:layout="@layout/fragment_favoritos"
+        android:id="@+id/favoritosFragment"
+        android:name="com.example.techfinder.fragments.FavoritosFragment"
+        android:label="FavoritosFragment" />
+    <fragment
+        tools:layout="@layout/fragment_perfil"
+        android:id="@+id/perfilFragment"
+        android:name="com.example.techfinder.fragments.PerfilFragment"
+        android:label="PerfilFragment" />
 </navigation>
