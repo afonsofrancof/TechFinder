@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="415c8a22-0792-456f-8a83-df5cd2d4c103" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/techfinder/objects/structures.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/techfinder/objects/structures.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/techfinder/utils/DbAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/techfinder/utils/DbAPI.kt" afterDir="false" />
     </list>
@@ -282,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642704281948</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="cenas feitas pelo tiago">
+      <created>1642709365579</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1642709365579</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,6 +311,7 @@
     <MESSAGE value="adapter da recycler view feito" />
     <MESSAGE value="adapter da recycler view semi feito" />
     <MESSAGE value="cenas para o lucas" />
-    <option name="LAST_COMMIT_MESSAGE" value="cenas para o lucas" />
+    <MESSAGE value="cenas feitas pelo tiago" />
+    <option name="LAST_COMMIT_MESSAGE" value="cenas feitas pelo tiago" />
   </component>
 </project>
