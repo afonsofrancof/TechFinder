@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="UTILIZADOR">
         <menu>
-            <item android:title="Perfil" android:icon="@drawable/ic_pessoa"/>
-            <item android:title="Favoritos" android:icon="@drawable/ic_favoritos"/>
-            <item android:title="Comentários" android:icon="@drawable/ic_comentario"/>
-            <item android:title="Alterar palavra-passe" android:icon="@drawable/ic_cadeado"/>
+            <item android:title="Perfil" android:icon="@drawable/ic_pessoa" android:id="@+id/perfil"/>
+            <item android:title="Favoritos" android:icon="@drawable/ic_favoritos" android:id="@+id/favoritos"/>
+            <item android:title="Comentários" android:icon="@drawable/ic_comentario" android:id="@+id/comentarios"/>
+            <item android:title="Alterar palavra-passe" android:icon="@drawable/ic_cadeado" android:id="@+id/alterar_palavra_passe"/>
         </menu>
     </item>
     <item android:title="SESSÃO">
         <menu>
-            <item android:title="Terminar sessão" android:icon="@drawable/ic_logout"/>
+            <item android:title="Terminar sessão" android:icon="@drawable/ic_logout" android:id="@+id/logout"/>
         </menu>
     </item>
 

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/shopsFeedFragment2">
+    app:startDestination="@id/shopsFeedFragment">
     <fragment
         tools:layout="@layout/fragment_shops_feed"
-        android:id="@+id/shopsFeedFragment2"
+        android:id="@+id/shopsFeedFragment"
         android:name="com.example.techfinder.fragments.ShopsFeedFragment"
         android:label="ShopsFeedFragment" >
         <action
-            android:id="@+id/action_shopsFeedFragment2_to_lojaInfoFragment"
+            android:id="@+id/action_shopsFeedFragment_to_lojaInfoFragment"
             app:destination="@id/lojaInfoFragment" />
     </fragment>
     <fragment
