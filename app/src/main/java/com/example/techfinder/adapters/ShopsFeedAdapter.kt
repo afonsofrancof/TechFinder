@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.techfinder.databinding.LojaPreviewBinding
 import com.example.techfinder.objects.LojaPreview
 
-class ShopsFeedAdapter(private val onClickListener: OnClickListener) : ListAdapter<LojaPreview, ShopsFeedAdapter.FeedItemViewHolder>(DiffCallback){
+class ShopsFeedAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<LojaPreview, ShopsFeedAdapter.FeedItemViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,8 +26,7 @@ class ShopsFeedAdapter(private val onClickListener: OnClickListener) : ListAdapt
     }
 
 
-
-    companion object DiffCallback : DiffUtil.ItemCallback<LojaPreview>(){
+    companion object DiffCallback : DiffUtil.ItemCallback<LojaPreview>() {
         override fun areItemsTheSame(oldItem: LojaPreview, newItem: LojaPreview): Boolean {
             return oldItem == newItem
         }
@@ -37,14 +37,15 @@ class ShopsFeedAdapter(private val onClickListener: OnClickListener) : ListAdapt
 
     }
 
-    class FeedItemViewHolder(var binding: LojaPreviewBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(loja: LojaPreview){
+    class FeedItemViewHolder(var binding: LojaPreviewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(loja: LojaPreview) {
             binding.loja = loja
             binding.executePendingBindings()
         }
     }
 
-    interface OnClickListener{
+    interface OnClickListener {
         fun onClick(post: LojaPreview)
     }
 

@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity() ,NavigationView.OnNavigationItemSelecte
 
     private lateinit var toolbar : Toolbar
 
-    private lateinit var drawerLayout:DrawerLayout
+    private lateinit var drawerLayout : DrawerLayout
 
-    private lateinit var navigationView:NavigationView
+    private lateinit var navigationView : NavigationView
 
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)

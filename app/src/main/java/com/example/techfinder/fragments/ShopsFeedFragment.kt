@@ -1,17 +1,13 @@
 package com.example.techfinder.fragments
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.techfinder.R
 import com.example.techfinder.activities.MainActivity
 import com.example.techfinder.adapters.ShopsFeedAdapter
@@ -37,6 +33,7 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
         binding = FragmentShopsFeedBinding.inflate(inflater)
         val adapter = ShopsFeedAdapter(this)
         binding.feed.adapter = adapter
+        viewModel.getLojasPreview()
         viewModel.lojaLista.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
@@ -44,7 +41,8 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
     }
 
     override fun onClick(post: LojaPreview) {
-        (activity as MainActivity).findNavController(R.id.host_fragment).navigate(R.id.lojaInfoFragment)
+        (activity as MainActivity).findNavController(R.id.host_fragment)
+            .navigate(R.id.lojaInfoFragment)
     }
 
 
