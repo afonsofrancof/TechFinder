@@ -8,7 +8,7 @@ data class User(
         var email: String = "",
         var password: String = "",
         var morada: String = ""
-):Serializable
+)
 
 data class LojaPreview(
         var id : String ="",
@@ -17,15 +17,21 @@ data class LojaPreview(
         var localizacaoY : Float,
         var horarioAbertura : LocalDateTime? = null,
         var horarioFecho : LocalDateTime?  = null
-):Serializable
+)
 
 data class Loja (
         var id : String ="",
         var nome : String ="",
-        var horarioAbertura : LocalDateTime? = null,
-        var horarioFecho : LocalDateTime?  = null,
+        var horarios : MutableList<Horario> = ArrayList(),
         var website : String? = null,
         var morada : String? = null,
         var email : String? = null,
         var telefone : String = ""
-):Serializable
+)
+
+data class Horario (
+        var horarioAbertura : LocalDateTime? = null,
+        var horarioFecho : LocalDateTime?  = null,
+        var dia : Int
+
+)
