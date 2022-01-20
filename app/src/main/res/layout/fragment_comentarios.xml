@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="post"
-            type="com.afonsofrancof.connectdot.objects.Post" />
+            name="comentario"
+            type="" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -59,6 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
                     app:layout_constraintEnd_toStartOf="@id/delete_post_button"
