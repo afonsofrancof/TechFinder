@@ -1,6 +1,6 @@
 package com.example.techfinder.utils
 
-import User
+
 import com.example.techfinder.objects.LojaPreview
 import com.example.techfinder.objects.User
 import java.io.DataInputStream
