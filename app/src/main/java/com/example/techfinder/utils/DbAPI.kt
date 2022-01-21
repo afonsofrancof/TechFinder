@@ -1,5 +1,6 @@
 package com.example.techfinder.utils
 
+import com.example.techfinder.objects.Categoria
 import com.example.techfinder.objects.LojaPreview
 import com.example.techfinder.objects.User
 import java.io.*
@@ -9,8 +10,23 @@ import java.time.LocalDateTime
 
 class DbAPI {
     companion object {
+
+        /*
+            Queries:
+
+                -> getUser (tudo)
+                -> autenticaUser
+                -> criarConta
+                -> checkUserName
+                -> alterarPassword
+                -> getLoja (tudo) - apenas uma loja
+                -> getLojaPreview (id, nome, local x y , horario a f) - todas as lojas
+                -> getCategorias
+
+             */
+
         fun getUser(username: String): User? {
-            val client = Socket("192.168.0.107", 8888)
+            val client = Socket("10.0.2.2", 8888)
             val dos = DataOutputStream(client.getOutputStream())
             dos.writeUTF("getUser")
             dos.writeUTF(username)
@@ -34,8 +50,8 @@ class DbAPI {
             dos.flush()
             val listLojas: MutableList<LojaPreview> = ArrayList()
             while(true) {
+                if(!din.readBoolean()) break
                 val id = din.readUTF()
-                if(id.equals("#####")) break;
                 val nome = din.readUTF()
                 val localizacaoX = din.readFloat()
                 val localizacaoY = din.readFloat()
@@ -56,5 +72,24 @@ class DbAPI {
             }
             return listLojas
         }
+
+        fun getCategorias(): MutableList<Categoria>{
+
+            val client = Socket("10.0.2.2", 8888)
+            val dos = DataOutputStream(BufferedOutputStream(client.getOutputStream()))
+            val din = DataInputStream(BufferedInputStream(client.getInputStream()))
+            dos.writeUTF("getLojasPreview")
+            dos.flush()
+            val listCategorias: MutableList<Categoria> = ArrayList()
+
+            while(true){
+                if(!din.readBoolean()) break
+                val nomeCategoria = din.readUTF();
+                listCategorias.add(Categoria(nomeCategoria))
+            }
+
+            return listCategorias
+        }
+
     }
 }

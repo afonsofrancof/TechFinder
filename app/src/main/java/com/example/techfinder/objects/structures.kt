@@ -36,3 +36,7 @@ data class Horario(
     var dia: Int
 
 )
+
+data class Categoria(
+    var nomeCategoria: String = ""
+)
