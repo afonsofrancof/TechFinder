@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
+    <data>
 
-<!--        <variable-->
-<!--            name="comentario"-->
-<!--            type="" />-->
-<!--    </data>-->
+        <variable
+            name="comentario"
+            type="com.example.techfinder.objects.Comentario" />
+    </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -48,8 +48,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
-                    android:text="@{comentario.author.name}"
-                    android:fontFamily="@font/Outfit_Light"
+                    android:text="@{comentario.username}"
+                    android:fontFamily="@font/outfit_light"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/profile_picture"
@@ -62,28 +62,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:fontFamily="@font/Outfit_ExtraLight"
-                    app:layout_constraintEnd_toStartOf="@id/delete_post_button"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:timeAgo="@{comentario.date}"
-                    tools:text="2 seconds ago" />
-
-                <ImageButton
-                    android:id="@+id/delete_post_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:paddingStart="8dp"
-                    android:src="@drawable/delete_logo"
-                    app:deleteButton="@{comentario.author.userId}"
-                    app:layout_constraintBottom_toBottomOf="@id/time_ago"
+                    android:fontFamily="@font/outfit_extralight"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/time_ago"
-                    app:tint="@color/gray"
-                    />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:timeAgo="@{comentario.data}"
+                    tools:text="2 seconds ago" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,78 +83,8 @@
                 android:gravity="center|start"
                 android:text="@{comentario.text}"
                 android:textSize="16sp"
-                android:fontFamily="@font/Outfit_ExtraLight"
+                android:fontFamily="@font/outfit_extralight"
                 tools:text="@tools:sample/lorem[25]" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                >
-
-                <ImageButton
-                    android:id="@+id/like_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="8dp"
-                    android:src="@drawable/like_states"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:likedState="@{comentario.likedBy}" />
-
-                <TextView
-                    android:id="@+id/like_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/like_button"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:likeLabel="@{comentario.likedBy}"
-                    android:fontFamily="@font/Outfit_ExtraLight"
-                    tools:text="1 likes" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/reposted"
-                    app:isRepost="@{comentario.repost}"
-                    android:fontFamily="@font/Outfit_ExtraLight"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="Reposted" />
-
-                <ImageButton
-                    android:id="@+id/repost_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:paddingStart="8dp"
-                    android:paddingTop="8dp"
-                    android:paddingEnd="4dp"
-                    android:paddingBottom="8dp"
-                    android:src="@drawable/repost_icon_not_reposted"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/repost_label"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:repostsState="@{post}" />
-
-                <TextView
-                    android:id="@+id/repost_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:repostsLabel="@{post}"
-                    android:fontFamily="@font/Outfit_ExtraLight"
-                    tools:text="15" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
