@@ -11,8 +11,9 @@ class ShopsFeedViewModel : ViewModel() {
     var lojaLista = MutableLiveData<List<LojaPreview>>()
 
     fun getLojasPreview() {
-        lojaLista.value = DbAPI.getLojasPreview()
+        lojaLista.value = DbAPI.getLojasPreview("username1") //TODO GET USER
     }
+
 
 
 }

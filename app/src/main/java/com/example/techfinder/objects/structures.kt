@@ -53,5 +53,6 @@ data class Comentario(
 
 data class Categoria(
     var nomeCategoria: String = "",
-    var voto: Int?
+    var voto: Int?,
+    val tipoVoto : Int // -1 voto negativo , 0 nao votou , 1 voto positivo
 )
