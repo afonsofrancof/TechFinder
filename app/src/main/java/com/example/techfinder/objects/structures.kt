@@ -7,17 +7,16 @@ data class User(
     var username: String = "",
     var nome: String = "",
     var email: String = "",
-    var password: String = "",
+    var password: String? = "",
     var morada: String = "",
     var pfpUrl: String? = ""
 )
-
 
 data class LojaPreview(
     var id: String = "",
     var nome: String = "",
     var coordenadas: Coordenadas,
-    var horario: Horario,
+    var horario: Horario?,
     var fav: Boolean
 )
 
@@ -26,9 +25,12 @@ data class Loja(
     var nome: String = "",
     var coordenadas: Coordenadas,
     var horarios: MutableList<Horario> = ArrayList(),
+    var comentarios: MutableList<Comentario> = ArrayList(),
+    var categorias: MutableList<Categoria> = ArrayList(),
     var email: String? = null,
     var website: String? = null,
-    var telefone: String = ""
+    var telefone: String = "",
+    var fav: Boolean
 )
 
 data class Horario(
@@ -50,5 +52,6 @@ data class Comentario(
 )
 
 data class Categoria(
-    var nomeCategoria: String = ""
+    var nomeCategoria: String = "",
+    var voto: Int?
 )
