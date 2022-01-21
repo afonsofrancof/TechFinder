@@ -14,12 +14,18 @@ import java.util.*
 
 
 @BindingAdapter(value = ["abertura","fecho"], requireAll = true)
-fun MaterialCardView.statusLoja(abertura:Time, fecho: Time) {
+fun TextView.statusLoja(abertura:Time, fecho: Time) {
     var atual = Time.valueOf(LocalDate.now().toString())
-    if(atual.before(abertura) || atual.after(fecho))
-        this.setBackgroundColor(ContextCompat.getColor(context,R.color.loja_aberta))
-    else
-        this.setBackgroundColor(ContextCompat.getColor(context,R.color.light_gray))
+    if(atual.before(abertura) || atual.after(fecho)) {
+        this.text = "Fechado"
+        this.setTextColor(ContextCompat.getColor(context,R.color.fechado))
+
+    }
+
+    else {
+        this.text = "Aberto"
+        this.setTextColor(ContextCompat.getColor(context, R.color.loja_aberta))
+    }
 }
 
 @BindingAdapter("timeAgo")
