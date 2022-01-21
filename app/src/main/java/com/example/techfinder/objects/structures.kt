@@ -17,7 +17,8 @@ data class LojaPreview(
     var id: String = "",
     var nome: String = "",
     var coordenadas: Coordenadas,
-    var horario: Horario
+    var horario: Horario,
+    var fav: Boolean
 )
 
 data class Loja(

@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() ,NavigationView.OnNavigationItemSelecte
                 drawerLayout.closeDrawers();
             }
             R.id.favoritos -> {
-                navController.navigate(R.id.favoritosFragment)
+                navController.navigate(R.id.favourites_feed)
                 drawerLayout.closeDrawers();
             }
             R.id.comentarios -> {

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.techfinder.R
 import com.example.techfinder.activities.MainActivity
@@ -23,6 +24,7 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
 
     private val viewModel: ShopsFeedViewModel by lazy {ViewModelProvider(this).get(ShopsFeedViewModel::class.java)}
 
+    val args by navArgs<ShopsFeedFragmentArgs>()
 
 
     override fun onCreateView(
@@ -35,7 +37,11 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
         binding.feed.adapter = adapter
 
         viewModel.lojaLista.observe(viewLifecycleOwner, {
-            adapter.submitList(it)
+            if(args.isFavourites){
+                val listaFiltered = it.filter { lojaPreview -> lojaPreview.fav==true}
+                adapter.submitList(listaFiltered)
+            }else adapter.submitList(it)
+
         })
         viewModel.lojaLista.value = null;
         viewModel.getLojasPreview()
