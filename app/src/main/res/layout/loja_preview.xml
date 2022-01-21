@@ -24,8 +24,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:abertura="@{loja.horarioAbertura}"
-        app:fecho="@{loja.horarioFecho}"
         >
 
 <!--        <ImageView-->
@@ -63,6 +61,8 @@
             </TextView>
 
             <TextView
+                app:abertura="@{loja.horario.horarioAbertura}"
+                app:fecho="@{loja.horario.horarioFecho}"
                 android:id="@+id/statusLoja"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -74,7 +74,9 @@
                 app:layout_constraintEnd_toStartOf="@+id/Distancia"
                 app:layout_constraintStart_toEndOf="@+id/NomeLoja"
                 tools:ignore="MissingConstraints"
-                tools:text="Aberto">
+                tools:text="Aberto"
+                android:textStyle="bold"
+                >
 
 
             </TextView>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.techfinder.R
 import com.example.techfinder.activities.MainActivity
 import com.example.techfinder.adapters.ShopsFeedAdapter
@@ -38,6 +39,15 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
         })
         viewModel.lojaLista.value = null;
         viewModel.getLojasPreview()
+
+        val refreshListener = SwipeRefreshLayout.OnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = true
+            viewModel.getLojasPreview()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener(refreshListener)
+
         return binding.root
     }
 

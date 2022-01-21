@@ -22,8 +22,8 @@
                 android:id="@+id/toolbar"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:background="@android:color/darker_gray"
-                android:elevation="4dp">
+                android:background="@color/white_bg"
+                app:titleTextColor="@color/black">
             </androidx.appcompat.widget.Toolbar>
             <FrameLayout
                 android:layout_width="match_parent"

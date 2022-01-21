@@ -2,6 +2,7 @@ package com.example.techfinder.utils
 
 
 import android.text.format.DateUtils
+import android.util.Log
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -10,18 +11,20 @@ import com.google.android.material.card.MaterialCardView
 import java.sql.Time
 import java.sql.Timestamp
 import java.time.LocalDate
+import java.time.LocalTime
 import java.util.*
 
 
 @BindingAdapter(value = ["abertura","fecho"], requireAll = true)
 fun TextView.statusLoja(abertura:Time, fecho: Time) {
-    var atual = Time.valueOf(LocalDate.now().toString())
-    if(atual.before(abertura) || atual.after(fecho)) {
+    var atual = LocalTime.parse(Time(System.currentTimeMillis()).toString())
+    Log.i("DEGUBMANOS",fecho.toString())
+    if(atual.isBefore(LocalTime.parse(abertura.toString())) ||
+       atual.isAfter(LocalTime.parse(fecho.toString()))) {
         this.text = "Fechado"
         this.setTextColor(ContextCompat.getColor(context,R.color.fechado))
 
     }
-
     else {
         this.text = "Aberto"
         this.setTextColor(ContextCompat.getColor(context, R.color.loja_aberta))

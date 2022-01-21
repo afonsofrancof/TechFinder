@@ -40,9 +40,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:setProfilePicture="@{comentario.author.pfpUrl}"
-                    tools:src="@tools:sample/avatars" />
 
+                    tools:src="@tools:sample/avatars" />
+<!--                app:setProfilePicture="@{comentario.author.pfpUrl}"-->
                 <TextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginEnd="8dp"
                 android:gravity="center|start"
-                android:text="@{comentario.text}"
+                android:text="@{comentario.texto}"
                 android:textSize="16sp"
                 android:fontFamily="@font/outfit_extralight"
                 tools:text="@tools:sample/lorem[25]" />
