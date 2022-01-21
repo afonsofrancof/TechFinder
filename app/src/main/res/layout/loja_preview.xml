@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <data>
         <variable
             name="loja"
@@ -15,38 +16,101 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_margin="4dp"
-        android:backgroundTint="@color/gray"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:backgroundTint="@color/card_bg"
         android:elevation="15dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:abertura="@{loja.horarioAbertura}"
+        app:fecho="@{loja.horarioFecho}"
+        >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            >-->
+<!--        </ImageView>-->
 
-            >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/NomeLoja"
+                    android:layout_width="160"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/Outfit_Light"
 
 
-        </ImageView>
+                    android:text="@{loja.nome}"
+                    android:textColor="@color/light_gray2"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Mediamarkt"
+                    app:layout_constraintVertical_bias="0.0">
 
-            android:text="@{loja.nome}"
-            android:textColor="@color/teal_200"
+            </TextView>
 
-            android:textSize="24sp"
-            tools:text="Mediamarkt"
+            <TextView
+                android:id="@+id/Horario"
+                android:layout_width="wrap_content"
+                android:layout_height="84dp"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/Outfit_Light"
+                android:gravity="center"
+                android:text="@{loja.horarioAbertura.toString()}"
+                android:textColor="@color/teal_200"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/NomeLoja"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="-2dp"
+                tools:text="12:30 - 20:30">
 
-            >
 
-        </TextView>
+            </TextView>
+
+            <TextView
+                android:id="@+id/Distancia"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:fontFamily="@font/Outfit_Light"
+                android:gravity="center"
+                android:textColor="@color/light_gray3"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.137"
+                app:layout_constraintStart_toEndOf="@id/Horario"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="15.2 Km">
+
+            </TextView>
+
+
+            <!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:abertura="@{loja.horarioAbertura}"-->
+<!--                app:fecho="@{loja.horarioFecho}"-->
+<!--                android:text=""-->
+
+
+<!--            >-->
+
+<!--            </TextView>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </com.google.android.material.card.MaterialCardView>
 
