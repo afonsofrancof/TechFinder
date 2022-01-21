@@ -2,9 +2,9 @@ package com.example.techfinder.utils
 
 import com.example.techfinder.objects.LojaPreview
 import com.example.techfinder.objects.User
-import java.io.DataInputStream
-import java.io.DataOutputStream
+import java.io.*
 import java.net.Socket
+import java.sql.Time
 import java.time.LocalDateTime
 
 class DbAPI {
@@ -26,22 +26,23 @@ class DbAPI {
         }
 
         fun getLojasPreview(): MutableList<LojaPreview> {
-            val client = Socket("192.168.0.107", 8888)
-            val dos = DataOutputStream(client.getOutputStream())
+            val client = Socket("10.0.2.2", 8888)
+            val dos = DataOutputStream(BufferedOutputStream(client.getOutputStream()))
+            val din = DataInputStream(BufferedInputStream(client.getInputStream()))
             dos.writeUTF("getLojasPreview")
+            dos.writeInt(LocalDateTime.now().dayOfWeek.value)
             dos.flush()
-            val din = DataInputStream(client.getInputStream())
-            val nlojas = din.readInt()
             val listLojas: MutableList<LojaPreview> = ArrayList()
-            for (i in nlojas downTo 1) {
+            while(true) {
                 val id = din.readUTF()
+                if(id.equals("#####")) break;
                 val nome = din.readUTF()
                 val localizacaoX = din.readFloat()
                 val localizacaoY = din.readFloat()
                 var horarioString = din.readUTF()
-                val horarioAbertura = LocalDateTime.parse(horarioString)
+                val horarioAbertura = Time.valueOf(horarioString)
                 horarioString = din.readUTF()
-                val horarioFecho = LocalDateTime.parse(horarioString)
+                val horarioFecho = Time.valueOf(horarioString)
                 listLojas.add(
                     LojaPreview(
                         id,

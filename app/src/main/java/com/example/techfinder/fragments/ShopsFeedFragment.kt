@@ -20,9 +20,8 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
 
     lateinit var binding: FragmentShopsFeedBinding
 
-    private val viewModel: ShopsFeedViewModel by lazy {
-        ViewModelProvider(this).get(ShopsFeedViewModel::class.java)
-    }
+    private val viewModel: ShopsFeedViewModel by lazy {ViewModelProvider(this).get(ShopsFeedViewModel::class.java)}
+
 
 
     override fun onCreateView(
@@ -33,10 +32,12 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
         binding = FragmentShopsFeedBinding.inflate(inflater)
         val adapter = ShopsFeedAdapter(this)
         binding.feed.adapter = adapter
-        viewModel.getLojasPreview()
-        viewModel.lojaLista.observe(viewLifecycleOwner, Observer {
+
+        viewModel.lojaLista.observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
+        viewModel.lojaLista.value = null;
+        viewModel.getLojasPreview()
         return binding.root
     }
 

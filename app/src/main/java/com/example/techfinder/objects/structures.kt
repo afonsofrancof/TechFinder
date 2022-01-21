@@ -1,5 +1,6 @@
 package com.example.techfinder.objects
 
+import java.sql.Time
 import java.time.LocalDateTime
 
 data class User(
@@ -15,8 +16,8 @@ data class LojaPreview(
     var nome: String = "",
     var localizacaoX: Float,
     var localizacaoY: Float,
-    var horarioAbertura: LocalDateTime? = null,
-    var horarioFecho: LocalDateTime? = null
+    var horarioAbertura: Time? = null,
+    var horarioFecho: Time? = null
 )
 
 data class Loja(
@@ -30,8 +31,8 @@ data class Loja(
 )
 
 data class Horario(
-    var horarioAbertura: LocalDateTime? = null,
-    var horarioFecho: LocalDateTime? = null,
+    var horarioAbertura: Time? = null,
+    var horarioFecho: Time? = null,
     var dia: Int
 
 )
