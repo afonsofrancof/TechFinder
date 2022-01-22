@@ -17,6 +17,7 @@ data class LojaPreview(
     var nome: String = "",
     var coordenadas: Coordenadas,
     var horario: Horario?,
+    var listCategorias: MutableList<String>,
     var fav: Boolean
 )
 

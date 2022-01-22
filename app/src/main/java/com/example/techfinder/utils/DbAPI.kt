@@ -1,9 +1,6 @@
 package com.example.techfinder.utils
 
 import com.example.techfinder.objects.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
 import java.io.DataInputStream
@@ -229,17 +226,22 @@ class DbAPI {
                 val horarioFecho = Time.valueOf(horarioString)
                 val fav = din.readBoolean()
                 val horario = Horario(dia, horarioAbertura, horarioFecho)
+                val listCategorias: MutableList<String> = ArrayList()
+                while (din.readBoolean()) {
+                    val nomeCategoria = din.readUTF()
+                    listCategorias.add(nomeCategoria)
+                }
                 listLojas.add(
                     LojaPreview(
                         id,
                         nome,
                         coordenadas,
                         horario,
+                        listCategorias,
                         fav
                     )
                 )
             }
-            dos.close()
             din.close()
             client.close()
             return listLojas
