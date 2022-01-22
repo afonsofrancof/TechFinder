@@ -58,6 +58,76 @@
 
 
 
+
+    <!--===================================-->
+            <!-- CARDVIEW HORARIOS -->
+    <!--===================================-->
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardHorario"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+
+            app:layout_constraintTop_toBottomOf="@id/nomeLoja"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+
+            app:cardBackgroundColor="@color/light_gray5"
+            app:cardCornerRadius="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/statusLoja"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/outfit_bold"
+                    android:gravity="center"
+                    android:textColor="@color/teal_200"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Aberto" />
+
+                <TextView
+                    android:id="@+id/horario"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/outfit_semibold"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/statusLoja"
+                    app:layout_constraintRight_toRightOf="parent"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="12:30 - 20:30"
+
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    <!--===================================-->
+                 <!-- WEBSITE -->
+    <!--===================================-->
+
+
         <LinearLayout
             android:id="@+id/separator1"
 
@@ -75,9 +145,6 @@
             >
 
         </LinearLayout>
-
-
-
 
 
         <TextView
@@ -130,61 +197,13 @@
             android:background="@drawable/laptop"
             />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardHorario"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-
-            app:layout_constraintTop_toBottomOf="@id/nomeLoja"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="10dp"
-
-            app:cardBackgroundColor="@color/light_gray5"
-            app:cardCornerRadius="2dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
 
-                <TextView
-                    android:id="@+id/statusLoja"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+    <!--===================================-->
+                  <!-- EMAIL -->
+    <!--===================================-->
 
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:gravity="center"
-
-                    android:layout_marginLeft="16dp"
-                    android:fontFamily="@font/outfit_semibold"
-                    android:textColor="@color/teal_200"
-                    tools:text="Alberto" />
-
-                <TextView
-                    android:id="@+id/horario"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    app:layout_constraintLeft_toRightOf="@id/statusLoja"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="24dp"
-                    android:gravity="center"
-
-                    android:fontFamily="@font/outfit_light"
-                    tools:text="12:30 - 20:30"
-
-                    />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
 
 
         <LinearLayout
@@ -202,6 +221,239 @@
             >
 
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/email"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/separator2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="60dp"
+
+            android:text="E-Mail"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="18dp"
+
+            />
+
+        <TextView
+            android:id="@+id/emailLoja"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/email"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="60dp"
+
+
+            tools:text="atendimentoWorten@gmail.com"
+            android:fontFamily="@font/outfit_light"
+            android:text="@{loja.email}"
+
+            />
+
+        <ImageView
+            android:id="@+id/logoMail"
+
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+
+            android:alpha="0.75"
+            android:background="@drawable/email2"
+            app:layout_constraintRight_toLeftOf="@id/email"
+            app:layout_constraintTop_toBottomOf="@id/separator2" />
+
+
+
+    <!--===================================-->
+            <!-- NUMERO DE TELEFONE -->
+    <!--===================================-->
+
+
+        <LinearLayout
+            android:id="@+id/separator3"
+
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@+id/emailLoja"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:orientation="horizontal"
+            android:background="@drawable/separator"
+
+            android:layout_marginTop="12dp"
+            >
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/telefone"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/separator3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="60dp"
+
+            android:text="Telefone"
+            android:fontFamily="@font/outfit_medium"
+            android:textSize="18dp"
+
+            />
+
+        <TextView
+            android:id="@+id/telefoneLoja"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/telefone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="60dp"
+
+
+            tools:text="964623453"
+            android:fontFamily="@font/outfit_light"
+            android:text="@{loja.telefone}"
+
+            />
+
+        <ImageView
+            android:id="@+id/logoTelefone"
+
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+
+            android:alpha="0.75"
+            android:background="@drawable/classictelephone"
+            app:layout_constraintRight_toLeftOf="@id/telefone"
+            app:layout_constraintTop_toBottomOf="@id/separator3" />
+
+
+
+
+    <!--===================================-->
+                <!-- DIRECOES -->
+    <!--===================================-->
+
+
+        <LinearLayout
+            android:id="@+id/separator4"
+
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@+id/telefoneLoja"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:orientation="horizontal"
+            android:background="@drawable/separator"
+
+            android:layout_marginTop="12dp"
+            >
+
+        </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/direcoesCard"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/separator4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="12dp"
+
+        app:cardBackgroundColor="@color/light_gray6"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/direcoes"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/logoDirecoes"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="4dp"
+
+                android:text="Obter Direções"
+                android:fontFamily="@font/outfit_bold"
+                />
+
+            <ImageView
+                android:id="@+id/logoDirecoes"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+
+                android:adjustViewBounds="false"
+                android:alpha="0.65"
+                android:background="@drawable/map1"
+                android:scaleType="center"
+
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/direcoes"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/categoriasCard"
+
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+
+        app:layout_constraintTop_toBottomOf="@id/direcoesCard"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+
+        app:cardBackgroundColor="@color/light_gray6"
+    >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            tools:listitem=""
+            >
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
