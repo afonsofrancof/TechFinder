@@ -1,8 +1,6 @@
-package com.example.techfinder.fragme
+package com.example.techfinder.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.techfinder.activities.LoginActivity
-import com.example.techfinder.activities.MainActivity
 import com.example.techfinder.databinding.FragmentLoginBinding
 import com.example.techfinder.viewModels.LoginViewModel
 
@@ -35,13 +32,7 @@ class LoginFragment : Fragment() {
                         if (password.length < 25) {
                             if (!it.isBlank()) {
                                 if (!password.isBlank()) {
-                                    val user = com.example.techfinder.utils.DbAPI.autenticaUser(
-                                        it.toString(),
-                                        password.toString()
-                                    )
-                                    user?.let {
-                                        viewModel.saveUser(user,(activity as LoginActivity))
-                                    }
+                                    viewModel.autenticaUser(it.toString(),password.toString(),(activity as LoginActivity))
                                 }else{
                                     Toast.makeText(
                                         (activity as LoginActivity),

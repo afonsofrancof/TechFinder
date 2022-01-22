@@ -1,6 +1,9 @@
 package com.example.techfinder.utils
 
 import com.example.techfinder.objects.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
 import java.io.DataInputStream
@@ -12,7 +15,7 @@ import java.time.LocalDateTime
 
 class DbAPI {
     companion object {
-        private const val host: String = "10.2.2.2"
+        private const val host: String = "10.0.2.2"
         private const val port: Int = 8888
 
         /*
@@ -30,6 +33,7 @@ class DbAPI {
                 -> getLojaPreview (id, nome, local x y , horario a f) - todas as lojas 👌
                 -> getCategorias 👌
         */
+
         fun autenticaUser(username: String, password: String): User? {
             val client = Socket(host, port)
             val dos = DataOutputStream(client.getOutputStream())
@@ -39,7 +43,6 @@ class DbAPI {
             dos.writeUTF(username)
             dos.writeUTF(password)
             dos.flush()
-            dos.close()
 
             val autenticado = din.readBoolean()
             var user: User? = null
@@ -51,6 +54,7 @@ class DbAPI {
                 user = User(username, nome, email, password, morada, pfpUrl)
             }
             din.close()
+            dos.close()
             client.close()
             return user
         }
@@ -73,11 +77,12 @@ class DbAPI {
             dos.writeUTF(morada)
             dos.writeUTF(email)
             dos.flush()
-            dos.close()
+
 
             val usernameDisponivel = din.readBoolean()
             val emailDisponivel = din.readBoolean()
 
+            dos.close()
             din.close()
             client.close()
             return usernameDisponivel && emailDisponivel
@@ -91,9 +96,10 @@ class DbAPI {
             dos.writeUTF("checkUserName")
             dos.writeUTF(username)
             dos.flush()
-            dos.close()
+
 
             val check = din.readBoolean()
+            dos.close()
             din.close()
             client.close()
             return check
@@ -109,10 +115,11 @@ class DbAPI {
             dos.writeUTF(oldPassword)
             dos.writeUTF(newPassword)
             dos.flush()
-            dos.close()
+
 
             val passIgual = din.readBoolean()
             val passCerta = din.readBoolean()
+            dos.close()
             din.close()
             client.close()
             if (passIgual)
@@ -130,7 +137,7 @@ class DbAPI {
             dos.writeUTF("getComentarios")
             dos.writeUTF(username)
             dos.flush()
-            dos.close()
+
 
             val comentarios: MutableList<Comentario> = ArrayList()
             while (din.readBoolean()) {
@@ -141,7 +148,7 @@ class DbAPI {
                 val comentario = Comentario(idLoja, username, texto, data)
                 comentarios.add(comentario)
             }
-
+            dos.close()
             din.close()
             client.close()
             return comentarios
@@ -232,6 +239,7 @@ class DbAPI {
                     )
                 )
             }
+            dos.close()
             din.close()
             client.close()
             return listLojas
@@ -246,7 +254,7 @@ class DbAPI {
             dos.writeUTF(username)
             dos.writeUTF(idLoja)
             dos.flush()
-            dos.close()
+
 
             val nome = din.readUTF()
             val website = din.readUTF()
@@ -293,7 +301,7 @@ class DbAPI {
                 val comentario = Comentario(idLoja, usernameC, texto, data)
                 comentarios.add(comentario)
             }
-
+            dos.close()
             din.close()
             client.close()
             return Loja(
@@ -324,6 +332,9 @@ class DbAPI {
                 val nomeCategoria = din.readUTF()
                 listCategorias.add(Categoria(nomeCategoria, 0, TIPOVOTO.NOVOTE))
             }
+            din.close()
+            dos.close()
+            client.close()
             return listCategorias
         }
     }
