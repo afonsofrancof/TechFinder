@@ -1,25 +1,24 @@
 package com.example.techfinder.activities
 
-import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.content.SharedPreferences
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKeys
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.techfinder.viewModels.LoginActivityViewModel
 
 
-class LoginActivity: Activity() {
+class LoginActivity: AppCompatActivity() {
+
+    private val viewModel : LoginActivityViewModel by lazy {
+        ViewModelProvider(this).get(LoginActivityViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
-
-        val sharedPreferences: SharedPreferences = EncryptedSharedPreferences.create(
-            "secret_shared_prefs",
-            masterKeyAlias,
-            this,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+        if(viewModel.getUser(this)!=null){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
 
 
