@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.techfinder.adapters.ComentariosAdapter
+import com.example.techfinder.adapters.ShopsFeedAdapter
 import com.example.techfinder.databinding.FragmentComentariosBinding
 import com.example.techfinder.databinding.FragmentPerfilBinding
+import com.example.techfinder.databinding.FragmentShopsFeedBinding
 import com.example.techfinder.viewModels.ComentariosViewModel
 import com.example.techfinder.viewModels.PerfilViewModel
 
-class ComentariosFragment: Fragment() {
+class ComentariosFragment: Fragment(){
     lateinit var binding: FragmentComentariosBinding
 
     private val viewModel: ComentariosViewModel by lazy {
@@ -23,8 +26,16 @@ class ComentariosFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentComentariosBinding.inflate(inflater)
 
+        binding = FragmentComentariosBinding.inflate(inflater)
+        val adapter = ComentariosAdapter()
+        binding.feed.adapter = adapter
+        binding = FragmentComentariosBinding.inflate(inflater)
+        viewModel.comentsLista.observe(viewLifecycleOwner, {
+                adapter.submitList(it)
+        })
+        viewModel.comentsLista.value = null;
+        viewModel.getComentarios()
 
         return binding.root
     }

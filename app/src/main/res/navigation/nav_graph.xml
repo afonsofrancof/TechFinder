@@ -34,7 +34,7 @@
         android:name="com.example.techfinder.fragments.LojaInfoFragment"
         android:label="LojaInfoFragment" />
     <fragment
-        tools:layout="@layout/fragment_comentarios"
+        tools:layout="@layout/comentario_item"
         android:id="@+id/comentariosFragment"
         android:name="com.example.techfinder.fragments.ComentariosFragment"
         android:label="ComentariosFragment" />
