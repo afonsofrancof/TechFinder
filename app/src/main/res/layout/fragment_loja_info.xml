@@ -474,7 +474,7 @@
 
                     android:adjustViewBounds="false"
                     android:alpha="0.65"
-                    android:background="@drawable/vote"
+                    android:background="@drawable/ic_baseline_thumbs_up_down_24"
                     android:scaleType="center"
 
                     android:scaleX="0.8"
