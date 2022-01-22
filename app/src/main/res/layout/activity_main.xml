@@ -23,7 +23,10 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:background="@color/white_bg"
-                app:titleTextColor="@color/black">
+                app:titleTextColor="@color/black"
+                app:subtitleTextColor="@color/light_gray3"
+                app:navigationIcon="@color/light_gray3"
+                >
             </androidx.appcompat.widget.Toolbar>
             <FrameLayout
                 android:layout_width="match_parent"
