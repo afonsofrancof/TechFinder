@@ -54,5 +54,19 @@ data class Comentario(
 data class Categoria(
     var nomeCategoria: String = "",
     var voto: Int?,
-    val tipoVoto : Int // -1 voto negativo , 0 nao votou , 1 voto positivo
+    val tipoVoto: TIPOVOTO // -1 voto negativo , 0 nao votou , 1 voto positivo
 )
+
+enum class TIPOVOTO(val value: Int) {
+    LIKE(1),
+    DISLIKE(-1),
+    NOVOTE(0);
+
+    companion object {
+        fun fromInt(value: Int) = values().first { it.value == value }
+    }
+}
+
+class PassIgualException(message: String) : Exception(message)
+
+class PassErradaException(message: String) : Exception(message)
