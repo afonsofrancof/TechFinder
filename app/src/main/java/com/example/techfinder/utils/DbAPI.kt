@@ -25,7 +25,7 @@ class DbAPI {
                 -> getFavoritos 👌
                 -> alterVote 👌
                 -> comentar 👌
-                -> toggleFavorito
+                -> toggleFavorito 👌
                 -> getLoja (tudo) - apenas uma loja 👌
                 -> getLojaPreview (id, nome, local x y , horario a f) - todas as lojas 👌
                 -> getCategorias 👌
@@ -44,12 +44,11 @@ class DbAPI {
             val autenticado = din.readBoolean()
             var user: User? = null
             if (autenticado) {
-                val username: String = din.readUTF()
-                val nome: String = din.readUTF()
-                val password: String = din.readUTF()
-                val morada: String = din.readUTF()
-                val email: String = din.readUTF()
-                user = User(username, nome, email, password, morada)
+                val nome = din.readUTF()
+                val morada = din.readUTF()
+                val email = din.readUTF()
+                val pfpUrl = din.readUTF()
+                user = User(username, nome, email, password, morada, pfpUrl)
             }
             din.close()
             client.close()
@@ -116,7 +115,11 @@ class DbAPI {
             val passCerta = din.readBoolean()
             din.close()
             client.close()
-            return !passIgual && passCerta
+            if (passIgual)
+                throw PassIgualException("")
+            if (!passCerta)
+                throw PassErradaException("")
+            return true
         }
 
         fun getComentarios(username: String): MutableList<Comentario> {
@@ -150,12 +153,12 @@ class DbAPI {
                 downvote (-1)
                 remove (0)
         */
-        fun alterVote(opcode: Int, username: String, idLoja: String, categoria: String) {
+        fun alterVote(voto: TIPOVOTO, username: String, idLoja: String, categoria: String) {
             val client = Socket(host, port)
             val dos = DataOutputStream(BufferedOutputStream(client.getOutputStream()))
 
             dos.writeUTF("alterVote")
-            dos.writeInt(opcode)
+            dos.writeInt(voto.value)
             dos.writeUTF(username)
             dos.writeUTF(idLoja)
             dos.writeUTF(categoria)
@@ -199,7 +202,7 @@ class DbAPI {
             val client = Socket(host, port)
             val dos = DataOutputStream(BufferedOutputStream(client.getOutputStream()))
             val din = DataInputStream(BufferedInputStream(client.getInputStream()))
-            val dia = LocalDateTime.now().dayOfWeek.value;
+            val dia = LocalDateTime.now().dayOfWeek.value
 
             dos.writeUTF("getLojasPreview")
             dos.writeUTF(username)
@@ -258,7 +261,7 @@ class DbAPI {
             // lista de horarios
             val horarios: MutableList<Horario> = ArrayList()
             while (din.readBoolean()) {
-                val diaSemana = din.readInt();
+                val diaSemana = din.readInt()
                 var horarioString = din.readUTF()
                 val horarioAbertura = Time.valueOf(horarioString)
                 horarioString = din.readUTF()
@@ -271,8 +274,11 @@ class DbAPI {
             val categorias: MutableList<Categoria> = ArrayList()
             while (din.readBoolean()) {
                 val nomeCategoria = din.readUTF()
-                val voto = din.readInt()
-                val categoria = Categoria(nomeCategoria, voto)
+                val votos = din.readInt()
+                val tipoVotoInt =
+                    din.readInt() // Fazer com que servidor envie o tipo de voto que o user fez nesta loja
+                val tipoVoto = TIPOVOTO.fromInt(tipoVotoInt)
+                val categoria = Categoria(nomeCategoria, votos, tipoVoto)
                 categorias.add(categoria)
             }
             categorias.sortBy { it.voto }
@@ -280,11 +286,11 @@ class DbAPI {
             // Comentarios
             val comentarios: MutableList<Comentario> = ArrayList()
             while (din.readBoolean()) {
-                val username = din.readUTF()
+                val usernameC = din.readUTF()
                 val texto = din.readUTF()
                 val time = din.readLong()
                 val data = Timestamp(time)
-                val comentario = Comentario(idLoja, username, texto, data)
+                val comentario = Comentario(idLoja, usernameC, texto, data)
                 comentarios.add(comentario)
             }
 
@@ -316,7 +322,7 @@ class DbAPI {
 
             while (din.readBoolean()) {
                 val nomeCategoria = din.readUTF()
-                listCategorias.add(Categoria(nomeCategoria, 0))
+                listCategorias.add(Categoria(nomeCategoria, 0, TIPOVOTO.NOVOTE))
             }
             return listCategorias
         }
