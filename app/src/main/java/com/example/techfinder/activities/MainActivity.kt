@@ -43,10 +43,6 @@ class MainActivity : AppCompatActivity() ,NavigationView.OnNavigationItemSelecte
 
     private lateinit var navigationView : NavigationView
 
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
-    }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

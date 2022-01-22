@@ -43,4 +43,14 @@
         android:id="@+id/perfilFragment"
         android:name="com.example.techfinder.fragments.PerfilFragment"
         android:label="PerfilFragment" />
+    <fragment
+        tools:layout="@layout/fragment_login"
+        android:id="@+id/loginFragment"
+        android:name="com.example.techfinder.fragments.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        tools:layout="@layout/fragment_register"
+        android:id="@+id/registerFragment"
+        android:name="com.example.techfinder.fragments.RegisterFragment"
+        android:label="RegisterFragment" />
 </navigation>
