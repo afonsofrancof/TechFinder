@@ -76,8 +76,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="-20dp"
 
-                app:abertura="@{loja.horario.horarioAbertura}"
-                app:fecho="@{loja.horario.horarioFecho}"
+                app:aberturaPreview="@{loja.horario.horarioAbertura}"
+                app:fechoPreview="@{loja.horario.horarioFecho}"
 
                 android:fontFamily="@font/outfit_light"
                 android:gravity="center"

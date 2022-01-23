@@ -24,6 +24,22 @@ class Extensions {
             val userJson = sharedPreferences.getString("user","")
             return gson.fromJson(userJson, User::class.java)
         }
+        fun Any.setUser(user: User){
+            val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+
+            val sharedPreferences: SharedPreferences = EncryptedSharedPreferences.create(
+                "trabalholi",
+                masterKeyAlias,
+                MyApplication.appContext,
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
+            val prefsEditor: SharedPreferences.Editor = sharedPreferences.edit()
+            val gson = Gson()
+            val json = gson.toJson(user)
+            prefsEditor.putString("user", json)
+            prefsEditor.apply()
+        }
 
     }
 }

@@ -31,6 +31,15 @@ import android.view.MenuItem
 import androidx.annotation.NonNull
 import androidx.core.view.GravityCompat
 import com.example.techfinder.fragments.ShopsFeedFragment
+import android.widget.Toast
+import androidx.navigation.NavController.OnDestinationChangedListener
+import androidx.navigation.NavDestination
+
+
+
+
+
+
 
 
 class MainActivity : AppCompatActivity() ,NavigationView.OnNavigationItemSelectedListener{
@@ -59,12 +68,19 @@ class MainActivity : AppCompatActivity() ,NavigationView.OnNavigationItemSelecte
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
         drawerLayout = findViewById(R.id.drawer_layout)
+        val appBarConfiguration = AppBarConfiguration(navController.graph,drawerLayout)
+        findViewById<Toolbar>(R.id.toolbar)
+            .setupWithNavController(navController, appBarConfiguration)
+
         navigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
         var toggle = ActionBarDrawerToggle(this,drawerLayout , toolbar,
         R.string.nav_open,R.string.nav_close)
+        navController.addOnDestinationChangedListener(OnDestinationChangedListener { controller, destination, arguments ->
+            toggle.isDrawerIndicatorEnabled = appBarConfiguration.topLevelDestinations.contains(destination.id)
+        })
+        toggle.toolbarNavigationClickListener = View.OnClickListener {this.onBackPressed() }
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
     }

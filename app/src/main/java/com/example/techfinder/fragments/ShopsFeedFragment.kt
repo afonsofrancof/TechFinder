@@ -1,6 +1,7 @@
 package com.example.techfinder.fragments
 
 import android.os.Bundle
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,12 @@ import com.example.techfinder.adapters.ShopsFeedAdapter
 import com.example.techfinder.databinding.FragmentShopsFeedBinding
 import com.example.techfinder.objects.LojaPreview
 import com.example.techfinder.viewModels.ShopsFeedViewModel
+import java.sql.Date
+import java.sql.Time
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.*
 
 
 class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
@@ -37,8 +44,9 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
         binding.feed.adapter = adapter
 
         viewModel.lojaLista.observe(viewLifecycleOwner, {
+            //SORT POR ABERTAS
             if(args.isFavourites){
-                val listaFiltered = it.filter { lojaPreview -> lojaPreview.fav==true}
+                val listaFiltered = it.filter { lojaPreview -> lojaPreview.fav }
                 adapter.submitList(listaFiltered)
             }else adapter.submitList(it)
 
@@ -57,9 +65,18 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
         return binding.root
     }
 
-    override fun onClick(post: LojaPreview) {
+    override fun onClick(loja: LojaPreview) {
+        val action = ShopsFeedFragmentDirections.actionShopsFeedFragmentToLojaInfoFragment()
+        val myStart = loja.horario?.horarioAbertura?.toInstant()?.let { Date(it.toEpochMilli()) }
+        val myEnd = loja.horario?.horarioFecho?.toInstant()?.let { Date(it.toEpochMilli()) }
+        val df: DateFormat = SimpleDateFormat("HH:mm")
+        val myDateStart: String = df.format(myStart)
+        val myDateEnd: String = df.format(myEnd)
+        action.idLoja = loja.id
+        action.abertura = myDateStart
+        action.fecho = myDateEnd
         (activity as MainActivity).findNavController(R.id.host_fragment)
-            .navigate(R.id.lojaInfoFragment)
+            .navigate(action)
     }
 
 

@@ -11,6 +11,7 @@ import androidx.security.crypto.MasterKeys
 import com.example.techfinder.activities.LoginActivity
 import com.example.techfinder.activities.MainActivity
 import com.example.techfinder.objects.User
+import com.example.techfinder.utils.Extensions.Companion.setUser
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,22 +26,7 @@ class LoginViewModel : ViewModel() {
                 password
             )
             if (user != null) {
-                val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
-
-                val sharedPreferences: SharedPreferences = EncryptedSharedPreferences.create(
-                    "trabalholi",
-                    masterKeyAlias,
-                    activity,
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-                )
-
-                val editor = sharedPreferences.edit()
-                val gson = Gson()
-                val json = gson.toJson(user)
-                editor.putString("user", json)
-                editor.apply()
-
+                setUser(user)
                 activity.startActivity(Intent(activity, MainActivity::class.java))
                 activity.finish()
             }

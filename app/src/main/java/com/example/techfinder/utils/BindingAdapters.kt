@@ -9,20 +9,20 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.techfinder.R
-import com.google.android.material.card.MaterialCardView
+import com.example.techfinder.objects.Horario
 import java.sql.Time
 import java.sql.Timestamp
-import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
+import java.util.stream.Collectors
 
 
-@BindingAdapter(value = ["abertura","fecho"], requireAll = true)
-fun TextView.statusLoja(abertura:Time, fecho: Time) {
+@BindingAdapter(value = ["aberturaPreview","fechoPreview"], requireAll = true)
+fun TextView.statusLojaPreview(aberturaPreview:Time, fechoPreview: Time) {
     var atual = LocalTime.parse(Time(System.currentTimeMillis()).toString())
-    Log.i("DEGUBMANOS",fecho.toString())
-    if(atual.isBefore(LocalTime.parse(abertura.toString())) ||
-       atual.isAfter(LocalTime.parse(fecho.toString()))) {
+    Log.i("DEGUBMANOS",fechoPreview.toString())
+    if(atual.isBefore(LocalTime.parse(aberturaPreview.toString())) ||
+       atual.isAfter(LocalTime.parse(fechoPreview.toString()))) {
         this.text = "Fechado"
         this.setTextColor(ContextCompat.getColor(context,R.color.fechado))
 
@@ -30,6 +30,26 @@ fun TextView.statusLoja(abertura:Time, fecho: Time) {
     else {
         this.text = "Aberto"
         this.setTextColor(ContextCompat.getColor(context, R.color.loja_aberta))
+    }
+}
+
+@BindingAdapter("statusLoja")
+fun TextView.statusLoja(horarios:MutableList<Horario>) {
+    val calendar = Calendar.getInstance()
+    val day = calendar[Calendar.DAY_OF_WEEK]
+    val horario = horarios.stream().filter { horario -> horario.dia==day}.findFirst().orElse(null);
+    if(horario!=null){
+        var atual = LocalTime.parse(Time(System.currentTimeMillis()).toString())
+        if(atual.isBefore(LocalTime.parse(horario.horarioAbertura.toString())) ||
+            atual.isAfter(LocalTime.parse(horario.horarioFecho.toString()))) {
+            this.text = "Fechado"
+            this.setTextColor(ContextCompat.getColor(context,R.color.fechado))
+
+        }
+        else {
+            this.text = "Aberto"
+            this.setTextColor(ContextCompat.getColor(context, R.color.loja_aberta))
+        }
     }
 }
 

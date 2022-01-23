@@ -13,6 +13,22 @@
             android:name="isFavourites"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_shopsFeedFragment_to_lojaInfoFragment"
+            app:destination="@id/lojaInfoFragment">
+        <argument
+            android:name="idLoja"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="abertura"
+            app:argType="string"
+            android:defaultValue="00:00"/>
+        <argument
+            android:name="fecho"
+            app:argType="string"
+            android:defaultValue="00:00"/>
+        </action>
     </fragment>
     <fragment
         tools:layout="@layout/fragment_shops_feed"
@@ -32,7 +48,20 @@
         tools:layout="@layout/fragment_loja_info"
         android:id="@+id/lojaInfoFragment"
         android:name="com.example.techfinder.fragments.LojaInfoFragment"
-        android:label="LojaInfoFragment" />
+        android:label="LojaInfoFragment">
+        <argument
+            android:name="idLoja"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="abertura"
+            app:argType="string"
+            android:defaultValue="00:00"/>
+        <argument
+            android:name="fecho"
+            app:argType="string"
+            android:defaultValue="00:00"/>
+    </fragment>
     <fragment
         tools:layout="@layout/comentario_item"
         android:id="@+id/comentariosFragment"

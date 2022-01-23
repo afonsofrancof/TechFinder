@@ -1,18 +1,21 @@
 package com.example.techfinder.utils
 
 import com.example.techfinder.objects.*
-import java.io.BufferedInputStream
-import java.io.BufferedOutputStream
-import java.io.DataInputStream
-import java.io.DataOutputStream
+import java.io.*
 import java.net.Socket
 import java.sql.Time
 import java.sql.Timestamp
 import java.time.LocalDateTime
+import java.util.concurrent.ThreadLocalRandom.current
+
+import java.io.FileOutputStream
+
+
+
 
 class DbAPI {
     companion object {
-        private const val host: String = "10.0.2.2"
+        private const val host: String = "193.200.241.76"
         private const val port: Int = 8888
 
         /*
@@ -47,7 +50,12 @@ class DbAPI {
                 val nome = din.readUTF()
                 val morada = din.readUTF()
                 val email = din.readUTF()
-                val pfpUrl = din.readUTF()
+                val pfpUrl: String?
+                if(din.readBoolean()) {
+                     pfpUrl = din.readUTF()
+                }else{
+                     pfpUrl = null
+                }
                 user = User(username, nome, email, password, morada, pfpUrl)
             }
             din.close()
@@ -124,6 +132,28 @@ class DbAPI {
             if (!passCerta)
                 throw PassErradaException("")
             return true
+        }
+
+        fun alterarPfp(username:String,path:String): String{
+            val client = Socket(host, port)
+            val dos = DataOutputStream(BufferedOutputStream(client.getOutputStream()))
+            val din = DataInputStream(BufferedInputStream(client.getInputStream()))
+            dos.writeUTF("alterarPfp")
+            dos.writeUTF(username)
+            val file = File(path)
+            val byteArray: ByteArray = ByteArray(124000)
+            val fos = FileInputStream(path)
+            val bos = BufferedInputStream(fos)
+            val bytesRead = client.getOutputStream().write(byteArray, 0, byteArray.size)
+            dos.writeInt(byteArray.size)
+            dos.write(byteArray,0,byteArray.size)
+            dos.writeUTF(file.extension)
+            dos.flush()
+            val link = din.readUTF();
+            din.close()
+            dos.close()
+            client.close()
+            return link
         }
 
         fun getComentarios(username: String): MutableList<Comentario> {
