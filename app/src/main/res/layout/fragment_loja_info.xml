@@ -396,7 +396,7 @@
             <TextView
                 android:id="@+id/direcoes"
 
-                android:layout_width="110dp"
+                android:layout_width="106dp"
                 android:layout_height="18dp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -404,7 +404,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/logoDirecoes"
                 app:layout_constraintTop_toTopOf="parent"
 
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="8dp"
                 android:fontFamily="@font/outfit_bold"
                 android:text="Obter Direções"
                 />
