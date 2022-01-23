@@ -7,6 +7,10 @@
         <variable
             name="loja"
             type="com.example.techfinder.objects.Loja" />
+
+        <variable
+            name="lojaPrev"
+            type="com.example.techfinder.objects.LojaPreview" />
     </data>
 
 
@@ -47,8 +51,9 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            app:favourite="@{lojaPrev.fav}"
 
-            android:background="@drawable/ic_baseline_bookmark_border_24"
+            tools:background="@drawable/ic_baseline_bookmark_border_24"
             android:backgroundTint="@color/light_gray3"
             android:gravity="center_horizontal"
 
@@ -404,7 +409,7 @@
             <TextView
                 android:id="@+id/direcoes"
 
-                android:layout_width="110dp"
+                android:layout_width="106dp"
                 android:layout_height="18dp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -412,7 +417,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/logoDirecoes"
                 app:layout_constraintTop_toTopOf="parent"
 
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="8dp"
                 android:fontFamily="@font/outfit_bold"
                 android:text="Obter Direções"
                 />

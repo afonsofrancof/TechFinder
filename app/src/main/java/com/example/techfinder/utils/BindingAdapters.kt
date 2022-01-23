@@ -3,6 +3,7 @@ package com.example.techfinder.utils
 
 import android.text.format.DateUtils
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -64,4 +65,32 @@ fun TextView.timeAgo(date: Timestamp) {
 @BindingAdapter("setProfilePicture")
 fun ImageView.setProfilePicture(url : String?){
     Glide.with(this).load(url).placeholder(R.drawable.ic_pessoa).error(R.drawable.ic_pessoa).into(this)
+}
+
+@BindingAdapter("favourite")
+fun ImageButton.setFavouriteButton(favourite : Boolean) {
+    if(favourite) {
+        this.background = ContextCompat.getDrawable(context, R.drawable.ic_baseline_bookmark_24)
+    }
+    else {
+        this.background =
+            ContextCompat.getDrawable(context, R.drawable.ic_baseline_bookmark_border_24)
+    }
+}
+
+
+
+@BindingAdapter("categoria")
+fun TextView.setCategoryColor(categoria : String ){
+    when(categoria) {
+        "Computadores" -> this.setTextColor(ContextCompat.getColor(context,R.color.blue_pastel))
+        "Televisões" -> this.setTextColor(ContextCompat.getColor(context,R.color.red_pastel))
+        "Componentes" -> this.setTextColor(ContextCompat.getColor(context,R.color.light_blue_pastel))
+        "Eletrodomesticos" -> this.setTextColor(ContextCompat.getColor(context,R.color.purple_pastel))
+        "Portáteis" -> this.setTextColor(ContextCompat.getColor(context,R.color.rose_pastel))
+        "Reparações" -> this.setTextColor(ContextCompat.getColor(context,R.color.green_pastel))
+        "Telemóveis" -> this.setTextColor(ContextCompat.getColor(context,R.color.light_purple_pastel))
+        "Colunas" -> this.setTextColor(ContextCompat.getColor(context,R.color.orange_pastel))
+    }
+
 }
