@@ -29,8 +29,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="32dp"
-
-            android:background="@tools:sample/avatars"
+            app:setProfilePicture="@{user.pfpUrl}"
+            tools:src="@tools:sample/avatars"
             />
 
 

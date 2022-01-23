@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.techfinder.activities.MainActivity
 import com.example.techfinder.databinding.FragmentPerfilBinding
 import com.example.techfinder.databinding.FragmentShopsFeedBinding
+import com.example.techfinder.utils.Extensions.Companion.getUser
 import com.example.techfinder.viewModels.PerfilViewModel
 import com.example.techfinder.viewModels.ShopsFeedViewModel
 
@@ -27,6 +28,8 @@ class PerfilFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPerfilBinding.inflate(inflater)
+
+        binding.user = getUser()
 
         return binding.root
     }

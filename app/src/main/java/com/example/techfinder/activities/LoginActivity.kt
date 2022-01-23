@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.techfinder.R
 import com.example.techfinder.databinding.ActivityLoginBinding
 import com.example.techfinder.databinding.ActivityMainBinding
+import com.example.techfinder.utils.Extensions.Companion.getUser
 import com.example.techfinder.viewModels.LoginActivityViewModel
 
 
@@ -27,7 +28,7 @@ class LoginActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
 
-        if(viewModel.getUser(this)!=null){
+        if(getUser()!=null){
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

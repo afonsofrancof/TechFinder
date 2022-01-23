@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/layout/fragment_comments_history.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_loja_info.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_perfil.xml" value="0.175" />
+        <entry key="app/src/main/res/layout/fragment_perfil.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.33125" />
         <entry key="app/src/main/res/layout/fragment_shops_feed.xml" value="0.33" />
         <entry key="app/src/main/res/layout/loja_preview.xml" value="0.17864583333333334" />
