@@ -14,7 +14,9 @@
     <color name="blue_pastel">#80D8FF</color>
     <color name="rose_pastel">#FF80AB</color>
     <color name="purple_pastel">#B388FF</color>
-
+    <color name="orange_pastel">#FFD180</color>
+    <color name="light_purple_pastel">#EA80FC</color>
+    <color name="light_green_pastel">#A5D6A7</color>
 
     <color name="gray">#444444</color>
     <color name="light_gray">#5F5F5F</color>
