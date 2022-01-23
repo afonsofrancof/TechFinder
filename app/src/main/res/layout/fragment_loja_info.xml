@@ -653,7 +653,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
 
-                tools:listitem="@layout/fragment_comentarios_loja"
+                tools:listitem="@layout/comentario_loja_item"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager">
 
             </androidx.recyclerview.widget.RecyclerView>
