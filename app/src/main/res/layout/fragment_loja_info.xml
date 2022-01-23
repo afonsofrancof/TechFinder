@@ -7,6 +7,10 @@
         <variable
             name="loja"
             type="com.example.techfinder.objects.Loja" />
+
+        <variable
+            name="lojaPrev"
+            type="com.example.techfinder.objects.LojaPreview" />
     </data>
 
 
@@ -47,8 +51,9 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            app:favourite="@{lojaPrev.fav}"
 
-            android:background="@drawable/ic_baseline_bookmark_border_24"
+            tools:background="@drawable/ic_baseline_bookmark_border_24"
             android:backgroundTint="@color/light_gray3"
             android:gravity="center_horizontal"
 

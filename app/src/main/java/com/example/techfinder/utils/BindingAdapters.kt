@@ -3,6 +3,7 @@ package com.example.techfinder.utils
 
 import android.text.format.DateUtils
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -44,4 +45,13 @@ fun TextView.timeAgo(date: Timestamp) {
 @BindingAdapter("setProfilePicture")
 fun ImageView.setProfilePicture(url : String?){
     Glide.with(this).load(url).placeholder(R.drawable.ic_pessoa).error(R.drawable.ic_pessoa).into(this)
+}
+
+@BindingAdapter("favourite")
+fun ImageButton.setFavouriteButton(favourite : Boolean) {
+    if(favourite) {
+        this.background = ContextCompat.getDrawable(context, R.drawable.ic_baseline_bookmark_24)
+    }
+    else
+        this.background = ContextCompat.getDrawable(context, R.drawable.ic_baseline_bookmark_border_24)
 }
