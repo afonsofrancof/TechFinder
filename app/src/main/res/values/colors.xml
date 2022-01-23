@@ -8,6 +8,12 @@
     <color name="fechado">#FE7879</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green_pastel">#CCFF90</color>
+    <color name="red_pastel">#FF8A80</color>
+    <color name="light_blue_pastel">#A7FFEB</color>
+    <color name="blue_pastel">#80D8FF</color>
+    <color name="rose_pastel">#FF80AB</color>
+    <color name="purple_pastel">#B388FF</color>
 
 
     <color name="gray">#444444</color>

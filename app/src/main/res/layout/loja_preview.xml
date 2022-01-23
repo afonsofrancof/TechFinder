@@ -18,7 +18,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="120dp"
             android:layout_marginTop="15dp"
             android:layout_marginHorizontal="15dp"
             android:backgroundTint="@color/card_bg"
@@ -41,42 +41,49 @@
             android:layout_height="match_parent">
 
             <TextView
-                    android:id="@+id/NomeLoja"
-                    android:layout_width="160dp"
+                android:id="@+id/NomeLoja"
 
+                android:layout_width="160dp"
+                android:layout_height="100dp"
 
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_marginStart="4dp"
-                    android:fontFamily="@font/outfit_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="-20dp"
+                android:layout_marginStart="4dp"
 
+                android:gravity="center"
+                android:fontFamily="@font/outfit_light"
+                android:text="@{loja.nome}"
+                android:textColor="@color/light_gray2"
 
-                    android:text="@{loja.nome}"
-                    android:textColor="@color/light_gray2"
-
-                    android:textSize="22sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Braga Parque Shopping"
-                    app:layout_constraintVertical_bias="0.0">
+                android:textSize="22sp"
+                tools:text="Braga Parque Shopping"
+                >
 
             </TextView>
 
             <TextView
+                android:id="@+id/statusLoja"
+
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Distancia"
+                app:layout_constraintStart_toEndOf="@+id/NomeLoja"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="-20dp"
+
                 app:abertura="@{loja.horario.horarioAbertura}"
                 app:fecho="@{loja.horario.horarioFecho}"
-                android:id="@+id/statusLoja"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
+
                 android:fontFamily="@font/outfit_light"
                 android:gravity="center"
                 android:textColor="@color/teal_200"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/Distancia"
-                app:layout_constraintStart_toEndOf="@+id/NomeLoja"
-                tools:ignore="MissingConstraints"
+
                 tools:text="Aberto"
                 android:textStyle="bold"
                 >
@@ -86,35 +93,51 @@
 
             <TextView
                 android:id="@+id/Distancia"
+
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/outfit_light"
-                android:gravity="center"
-                android:textColor="@color/light_gray3"
-                android:textSize="20sp"
+                android:layout_height="100dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.137"
                 app:layout_constraintStart_toEndOf="@id/statusLoja"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="-20dp"
+                android:gravity="center"
+
+                android:fontFamily="@font/outfit_light"
+                android:textColor="@color/light_gray3"
+                android:textSize="20sp"
+
                 tools:text="15.2 Km">
 
             </TextView>
 
 
-            <!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:abertura="@{loja.horarioAbertura}"-->
-<!--                app:fecho="@{loja.horarioFecho}"-->
-<!--                android:text=""-->
 
 
-<!--            >-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/scrollableCategorias"
+                android:orientation="horizontal"
 
-<!--            </TextView>-->
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+
+                tools:listitem="@layout/categoria"
+                android:layout_gravity="center"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                >
+
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

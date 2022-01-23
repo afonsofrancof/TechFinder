@@ -20,7 +20,7 @@
         android:layout_marginLeft="4dp"
         app:cardCornerRadius="6dp"
 
-        app:cardBackgroundColor="@color/light_gray2"
+        app:cardBackgroundColor="@color/light_gray"
         >
 
         <TextView
@@ -35,7 +35,7 @@
             tools:text="Categorias"
 
             android:fontFamily="@font/outfit_semibold"
-            android:textColor="@color/light_gray6"
+            android:textColor="@color/light_blue_pastel"
         />
 
     </androidx.cardview.widget.CardView>
