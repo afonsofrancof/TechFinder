@@ -42,11 +42,14 @@ class RegisterFragment : Fragment() {
                 ).show()
                 return@setOnClickListener
             } else {
-                val success = viewModel.register(username, password, nome, morada, email)
-                if(success){
-                    (activity as LoginActivity).startActivity(Intent(activity, MainActivity::class.java))
-                    (activity as LoginActivity).finish()
+                var success =false
+                 success = viewModel.register(username, password, nome, morada, email).also {
+                    if(success){
+                        (activity as LoginActivity).startActivity(Intent(activity, MainActivity::class.java))
+                        (activity as LoginActivity).finish()
+                    }
                 }
+
             }
 
         }
