@@ -1,17 +1,16 @@
 package com.example.techfinder.adapters
 
+import android.location.Location
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.techfinder.databinding.LojaPreviewBinding
-import com.example.techfinder.objects.Categoria
 import com.example.techfinder.objects.LojaPreview
-import com.example.techfinder.objects.TIPOVOTO
-import java.util.stream.Collectors
 
-class ShopsFeedAdapter(private val onClickListener: OnClickListener) :
+class ShopsFeedAdapter(private val onClickListener: OnClickListener,private val loc: Location?) :
     ListAdapter<LojaPreview, ShopsFeedAdapter.FeedItemViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,7 +24,7 @@ class ShopsFeedAdapter(private val onClickListener: OnClickListener) :
         holder.binding.root.setOnClickListener {
             onClickListener.onClick(loja)
         }
-        holder.bind(loja)
+        holder.bind(loja,loc)
     }
 
 
@@ -42,12 +41,18 @@ class ShopsFeedAdapter(private val onClickListener: OnClickListener) :
 
     class FeedItemViewHolder(var binding: LojaPreviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(loja: LojaPreview) {
+        fun bind(loja: LojaPreview,loc:Location?) {
             binding.loja = loja
-            val adapterCategorias = CategoriasAdapter()
-            binding.scrollableCategorias.adapter = adapterCategorias
-            adapterCategorias.submitList(loja.listCategorias)
-            binding.executePendingBindings()
+            binding.locationUser =loc
+            if (loja.listCategorias.size > 0) {
+                binding.scrollableCategorias.visibility = View.VISIBLE
+                val adapterCategorias = CategoriasAdapter()
+                binding.scrollableCategorias.adapter = adapterCategorias
+                adapterCategorias.submitList(loja.listCategorias)
+                binding.executePendingBindings()
+            }else{
+                binding.scrollableCategorias.visibility = View.GONE
+            }
         }
     }
 

@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/font/outfit_family.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.290625" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/categoria.xml" value="0.67" />
         <entry key="app/src/main/res/layout/comentario_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/comentario_loja_item.xml" value="0.33125" />
@@ -25,7 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.33125" />
         <entry key="app/src/main/res/layout/fragment_shops_feed.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_temporary_vote_test.xml" value="0.17864583333333334" />
-        <entry key="app/src/main/res/layout/loja_preview.xml" value="0.17864583333333334" />
+        <entry key="app/src/main/res/layout/loja_preview.xml" value="0.5" />
         <entry key="app/src/main/res/layout/voto_item.xml" value="0.5" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.33125" />
       </map>

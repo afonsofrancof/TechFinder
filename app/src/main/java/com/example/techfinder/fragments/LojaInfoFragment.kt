@@ -51,7 +51,7 @@ class LojaInfoFragment : Fragment() {
 
         val adapterCategorias = CategoriasAdapter()
         binding.scrollableCategorias.adapter = adapterCategorias
-        viewModel.listaCategoria.value = loja?.categorias
+        viewModel.listaCategoria.value = loja?.categorias?.filter { it.voto!! >=1 }
         adapterCategorias.submitList(viewModel.listaCategoria.value)
 
 
