@@ -21,7 +21,7 @@ class RegisterViewModel : ViewModel() {
 
             boolean = DbAPI.criarConta(username, password, nome, morada, email)
             if (boolean) setUser(User(username, nome, email, password, morada, null))
-        }
+        }.also {  return boolean }
         return boolean
     }
 }
