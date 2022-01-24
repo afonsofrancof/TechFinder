@@ -2,7 +2,6 @@ package com.example.techfinder.utils
 
 
 import android.text.format.DateUtils
-import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,23 +9,21 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.techfinder.R
+import com.example.techfinder.objects.Categoria
 import com.example.techfinder.objects.Horario
+import com.example.techfinder.objects.TIPOVOTO
+import com.example.techfinder.utils.Extensions.Companion.dayOfWeek
+import com.example.techfinder.utils.Extensions.Companion.isLojaOpen
 import java.sql.Time
 import java.sql.Timestamp
-import java.time.LocalTime
 import java.util.*
-import java.util.stream.Collectors
 
 
 @BindingAdapter(value = ["aberturaPreview","fechoPreview"], requireAll = true)
 fun TextView.statusLojaPreview(aberturaPreview:Time, fechoPreview: Time) {
-    var atual = LocalTime.parse(Time(System.currentTimeMillis()).toString())
-    Log.i("DEGUBMANOS",fechoPreview.toString())
-    if(atual.isBefore(LocalTime.parse(aberturaPreview.toString())) ||
-       atual.isAfter(LocalTime.parse(fechoPreview.toString()))) {
+    if(!isLojaOpen(aberturaPreview,fechoPreview)) {
         this.text = "Fechado"
         this.setTextColor(ContextCompat.getColor(context,R.color.fechado))
-
     }
     else {
         this.text = "Aberto"
@@ -36,13 +33,10 @@ fun TextView.statusLojaPreview(aberturaPreview:Time, fechoPreview: Time) {
 
 @BindingAdapter("statusLoja")
 fun TextView.statusLoja(horarios:MutableList<Horario>) {
-    val calendar = Calendar.getInstance()
-    val day = calendar[Calendar.DAY_OF_WEEK]
+    val day = dayOfWeek()
     val horario = horarios.stream().filter { horario -> horario.dia==day}.findFirst().orElse(null);
-    if(horario!=null){
-        var atual = LocalTime.parse(Time(System.currentTimeMillis()).toString())
-        if(atual.isBefore(LocalTime.parse(horario.horarioAbertura.toString())) ||
-            atual.isAfter(LocalTime.parse(horario.horarioFecho.toString()))) {
+    if(horario?.horarioAbertura != null && horario.horarioFecho!=null){
+        if(!isLojaOpen(horario.horarioAbertura!!,horario.horarioFecho!!)) {
             this.text = "Fechado"
             this.setTextColor(ContextCompat.getColor(context,R.color.fechado))
 
@@ -65,6 +59,12 @@ fun TextView.timeAgo(date: Timestamp) {
 @BindingAdapter("setProfilePicture")
 fun ImageView.setProfilePicture(url : String?){
     Glide.with(this).load(url).placeholder(R.drawable.ic_pessoa).error(R.drawable.ic_pessoa).into(this)
+}
+
+@BindingAdapter("setProfilePictureStrangeUser")
+fun ImageView.setProfilePictureStrangeUser(username: String){
+    val pfpUrl = DbAPI.getPfp(username)
+    Glide.with(this).load(pfpUrl).placeholder(R.drawable.ic_pessoa).error(R.drawable.ic_pessoa).into(this)
 }
 
 @BindingAdapter("favourite")
@@ -93,4 +93,30 @@ fun TextView.setCategoryColor(categoria : String ){
         "Colunas" -> this.setTextColor(ContextCompat.getColor(context,R.color.orange_pastel))
     }
 
+}
+@BindingAdapter(value = ["categoria","tipoBotao"], requireAll = true)
+fun ImageButton.drawVoteIcons(categoria: Categoria, tipoBotao: Boolean){
+    when(categoria.tipoVoto){
+        TIPOVOTO.UPVOTE ->{
+            if(tipoBotao){
+                this.setBackgroundResource(R.drawable.ic_upvote) //COLOCAR LIKE
+            }else{
+                this.setBackgroundResource(R.drawable.ic_downvote_outline) //TIRAR DISLIKE
+            }
+        }
+        TIPOVOTO.NOVOTE ->{
+            if(tipoBotao){
+                this.setBackgroundResource(R.drawable.ic_upvote_outline) //TIRAR LIKE
+            }else{
+                this.setBackgroundResource(R.drawable.ic_downvote_outline) //TIRAR DISLIKE
+            } //POR LIKE
+        }
+        TIPOVOTO.DOWNVOTE ->{
+            if(tipoBotao){
+                this.setBackgroundResource(R.drawable.ic_upvote_outline) //TIRAR LIKE
+            }else{
+                this.setBackgroundResource(R.drawable.ic_downvote) //COLOCAR DISLIKE
+            }
+        }
+    }
 }

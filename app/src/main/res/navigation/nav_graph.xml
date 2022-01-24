@@ -4,18 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/shopsFeedFragment">
-    <fragment
-        tools:layout="@layout/fragment_shops_feed"
-        android:id="@+id/shopsFeedFragment"
-        android:name="com.example.techfinder.fragments.ShopsFeedFragment"
-        android:label="ShopsFeedFragment" >
-        <argument
-            android:name="isFavourites"
-            app:argType="boolean"
-            android:defaultValue="false" />
-        <action
-            android:id="@+id/action_shopsFeedFragment_to_lojaInfoFragment"
-            app:destination="@id/lojaInfoFragment">
+    <action
+        android:id="@+id/to_lojaInfoFragment"
+        app:destination="@id/lojaInfoFragment">
         <argument
             android:name="idLoja"
             app:argType="string"
@@ -28,13 +19,21 @@
             android:name="fecho"
             app:argType="string"
             android:defaultValue="00:00"/>
-        </action>
+    </action>
+    <fragment
+        tools:layout="@layout/fragment_shops_feed"
+        android:id="@+id/shopsFeedFragment"
+        android:name="com.example.techfinder.fragments.ShopsFeedFragment"
+        android:label="ShopsFeedFragment" >
+        <argument
+            android:name="isFavourites"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_shops_feed"
         android:id="@+id/favourites_feed"
-        android:name="com.example.techfinder.fragments.ShopsFeedFragment"
-        android:label="ShopsFeedFragment" >
+        android:name="com.example.techfinder.fragments.ShopsFeedFragment">
         <argument
             android:name="isFavourites"
             app:argType="boolean"
@@ -48,7 +47,7 @@
         tools:layout="@layout/fragment_loja_info"
         android:id="@+id/lojaInfoFragment"
         android:name="com.example.techfinder.fragments.LojaInfoFragment"
-        android:label="LojaInfoFragment">
+        >
         <argument
             android:name="idLoja"
             app:argType="string"
@@ -65,12 +64,26 @@
     <fragment
         tools:layout="@layout/comentario_item"
         android:id="@+id/comentariosFragment"
-        android:name="com.example.techfinder.fragments.ComentariosFragment"
-        android:label="ComentariosFragment" />
+        android:name="com.example.techfinder.fragments.ComentariosFragment" />
     <fragment
         tools:layout="@layout/fragment_perfil"
         android:id="@+id/perfilFragment"
         android:name="com.example.techfinder.fragments.PerfilFragment"
-        android:label="PerfilFragment" />
-
+        />
+    <fragment
+        tools:layout="@layout/fragment_temporary_vote_test"
+        android:id="@+id/voteFragment"
+        android:name="com.example.techfinder.fragments.VoteFragment"
+        android:label="VoteFragment" >
+        <argument
+            android:name="idLoja"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+    <action android:id="@+id/action_global_voteFragment" app:destination="@id/voteFragment">
+        <argument
+            android:name="idLoja"
+            app:argType="string"
+            android:defaultValue=""/>
+    </action>
 </navigation>

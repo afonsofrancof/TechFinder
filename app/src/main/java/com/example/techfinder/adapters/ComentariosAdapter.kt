@@ -1,6 +1,7 @@
 package com.example.techfinder.adapters
 
 import android.view.LayoutInflater
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -8,17 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.techfinder.databinding.ComentarioItemBinding
 import com.example.techfinder.objects.Comentario
 
-class ComentariosAdapter() :
+
+class ComentariosAdapter :
     ListAdapter<Comentario, ComentariosAdapter.FeedItemViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): FeedItemViewHolder {
         return FeedItemViewHolder(ComentarioItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: FeedItemViewHolder, position: Int) {
         val comentario = getItem(position)
+
         holder.bind(comentario)
     }
 
@@ -38,6 +41,7 @@ class ComentariosAdapter() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(comentario: Comentario) {
             binding.comentario = comentario
+            binding.headerComentario.visibility = GONE
             binding.executePendingBindings()
         }
     }

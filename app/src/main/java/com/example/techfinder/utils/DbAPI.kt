@@ -1,5 +1,6 @@
 package com.example.techfinder.utils
 
+import android.util.Log
 import com.example.techfinder.objects.*
 import java.io.*
 import java.net.Socket
@@ -169,10 +170,11 @@ class DbAPI {
             val comentarios: MutableList<Comentario> = ArrayList()
             while (din.readBoolean()) {
                 val idLoja = din.readUTF()
+                val nomeLoja = din.readUTF()
                 val texto = din.readUTF()
                 val time = din.readLong()
                 val data = Timestamp(time)
-                val comentario = Comentario(idLoja, username, texto, data)
+                val comentario = Comentario(idLoja,nomeLoja, username, texto, data)
                 comentarios.add(comentario)
             }
             dos.close()
@@ -206,6 +208,7 @@ class DbAPI {
             val dos = DataOutputStream(BufferedOutputStream(client.getOutputStream()))
 
             dos.writeUTF("comentar")
+            dos.writeUTF(username)
             dos.writeUTF(idLoja)
             dos.writeUTF(texto)
             dos.writeLong(System.currentTimeMillis())
@@ -256,10 +259,10 @@ class DbAPI {
                 val horarioFecho = Time.valueOf(horarioString)
                 val fav = din.readBoolean()
                 val horario = Horario(dia, horarioAbertura, horarioFecho)
-                val listCategorias: MutableList<String> = ArrayList()
+                val listCategorias: MutableList<Categoria> = ArrayList()
                 while (din.readBoolean()) {
                     val nomeCategoria = din.readUTF()
-                    listCategorias.add(nomeCategoria)
+                    listCategorias.add(Categoria(nomeCategoria,0,TIPOVOTO.NOVOTE))
                 }
                 listLojas.add(
                     LojaPreview(
@@ -296,6 +299,7 @@ class DbAPI {
             val coordY = din.readFloat()
             val fav = din.readBoolean()
 
+
             val coordenadas = Coordenadas(coordX, coordY)
 
             // lista de horarios
@@ -330,7 +334,7 @@ class DbAPI {
                 val texto = din.readUTF()
                 val time = din.readLong()
                 val data = Timestamp(time)
-                val comentario = Comentario(idLoja, usernameC, texto, data)
+                val comentario = Comentario(idLoja,nome, usernameC, texto, data)
                 comentarios.add(comentario)
             }
             dos.close()
@@ -368,6 +372,23 @@ class DbAPI {
             dos.close()
             client.close()
             return listCategorias
+        }
+
+        fun getPfp(username:String):String?{
+            val client = Socket(host, port)
+            val dos = DataOutputStream(BufferedOutputStream(client.getOutputStream()))
+            val din = DataInputStream(BufferedInputStream(client.getInputStream()))
+
+            dos.writeUTF("getPfp")
+            dos.writeUTF(username)
+            dos.flush()
+
+            var url : String? = null
+            if(din.readBoolean()) url = din.readUTF()
+            dos.close()
+            din.close()
+            client.close()
+            return url
         }
     }
 }

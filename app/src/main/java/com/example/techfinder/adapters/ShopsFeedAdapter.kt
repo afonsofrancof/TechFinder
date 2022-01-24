@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.techfinder.databinding.LojaPreviewBinding
+import com.example.techfinder.objects.Categoria
 import com.example.techfinder.objects.LojaPreview
+import com.example.techfinder.objects.TIPOVOTO
+import java.util.stream.Collectors
 
 class ShopsFeedAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<LojaPreview, ShopsFeedAdapter.FeedItemViewHolder>(DiffCallback) {
@@ -41,6 +44,9 @@ class ShopsFeedAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(loja: LojaPreview) {
             binding.loja = loja
+            val adapterCategorias = CategoriasAdapter()
+            binding.scrollableCategorias.adapter = adapterCategorias
+            adapterCategorias.submitList(loja.listCategorias)
             binding.executePendingBindings()
         }
     }

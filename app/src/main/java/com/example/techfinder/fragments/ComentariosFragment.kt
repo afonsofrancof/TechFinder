@@ -30,7 +30,6 @@ class ComentariosFragment: Fragment(){
         binding = FragmentComentariosBinding.inflate(inflater)
         val adapter = ComentariosAdapter()
         binding.feed.adapter = adapter
-        binding = FragmentComentariosBinding.inflate(inflater)
         viewModel.comentsLista.observe(viewLifecycleOwner, {
                 adapter.submitList(it)
         })

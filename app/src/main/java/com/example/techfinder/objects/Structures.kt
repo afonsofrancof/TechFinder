@@ -17,7 +17,7 @@ data class LojaPreview(
     var nome: String = "",
     var coordenadas: Coordenadas,
     var horario: Horario?,
-    var listCategorias: MutableList<String>,
+    var listCategorias: MutableList<Categoria>,
     var fav: Boolean
 )
 
@@ -47,6 +47,7 @@ data class Coordenadas(
 
 data class Comentario(
     var idLoja: String?,
+    var nomeLoja : String,
     var username: String?,
     var texto: String,
     var data: Timestamp
@@ -59,8 +60,8 @@ data class Categoria(
 )
 
 enum class TIPOVOTO(val value: Int) {
-    LIKE(1),
-    DISLIKE(-1),
+    UPVOTE(1),
+    DOWNVOTE(-1),
     NOVOTE(0);
 
     companion object {

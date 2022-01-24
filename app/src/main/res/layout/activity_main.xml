@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:id="@+id/toolbar"
@@ -26,8 +26,9 @@
                 app:titleTextColor="@color/black"
                 app:subtitleTextColor="@color/light_gray3"
                 app:navigationIcon="@color/light_gray3"
-                >
-            </androidx.appcompat.widget.Toolbar>
+                app:titleCentered="true">
+
+            </com.google.android.material.appbar.MaterialToolbar>
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
