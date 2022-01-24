@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.techfinder.NavGraphDirections
+import com.example.techfinder.R
 import com.example.techfinder.activities.LoginActivity
+import com.example.techfinder.activities.MainActivity
 import com.example.techfinder.databinding.FragmentLoginBinding
 import com.example.techfinder.viewModels.LoginViewModel
 
@@ -75,6 +79,12 @@ class LoginFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }
+
+        binding.registerButton.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            (activity as LoginActivity).findNavController(R.id.fragment_container_login)
+                .navigate(action)
         }
 
         return binding.root

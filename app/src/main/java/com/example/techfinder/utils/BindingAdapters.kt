@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.techfinder.R
 import com.example.techfinder.objects.Categoria
 import com.example.techfinder.objects.Horario
@@ -61,6 +62,8 @@ fun TextView.timeAgo(date: Timestamp) {
 @BindingAdapter("setProfilePicture")
 fun ImageView.setProfilePicture(url: String?) {
     Glide.with(this).load(url).placeholder(R.drawable.ic_pessoa).error(R.drawable.ic_pessoa)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .skipMemoryCache(true)
         .into(this)
 }
 
@@ -68,6 +71,8 @@ fun ImageView.setProfilePicture(url: String?) {
 fun ImageView.setProfilePictureStrangeUser(username: String) {
     val pfpUrl = DbAPI.getPfp(username)
     Glide.with(this).load(pfpUrl).placeholder(R.drawable.ic_pessoa).error(R.drawable.ic_pessoa)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .skipMemoryCache(true)
         .into(this)
 }
 

@@ -97,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        android:hint="Introduza o seu nome de utilizador"
+        android:hint="Introduza o nome de utilizador"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         android:gravity="center"
@@ -123,7 +123,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Introduza a sua password"
+        android:hint="Introduza a password"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toTopOf="@id/login_button"
@@ -139,6 +139,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="200dp"
             android:maxLength="25"
+            android:inputType="textPassword"
             tools:text="exemplo_password">
 
         </com.google.android.material.textfield.TextInputEditText>
