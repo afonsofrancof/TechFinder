@@ -23,6 +23,12 @@ import java.sql.Date
 import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import android.net.Uri
+
+import android.content.Intent
+
+
+
 
 
 class LojaInfoFragment : Fragment() {
@@ -68,6 +74,14 @@ class LojaInfoFragment : Fragment() {
             adapterComentarios.submitList(it)
             adapterComentarios.notifyDataSetChanged()
         })
+
+        binding.direcoesCard.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?saddr="+args.myX+","+args.myY+"&daddr="+args.lojaX+","+args.lojaY+"")
+            )
+            startActivity(intent)
+        }
 
         binding.votar.setOnClickListener {
             loja?.id?.let { lojaId ->

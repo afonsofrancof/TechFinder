@@ -66,7 +66,7 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
 
 
     val args by navArgs<ShopsFeedFragmentArgs>()
-
+    val loc = Location("")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,7 +78,7 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
 
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient((activity as MainActivity))
-        val loc = Location("")
+
         if (ActivityCompat.checkSelfPermission(
                 (activity as MainActivity),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -147,6 +147,10 @@ class ShopsFeedFragment : Fragment(), ShopsFeedAdapter.OnClickListener {
         val df: DateFormat = SimpleDateFormat("HH:mm")
         val myDateStart: String = df.format(myStart)
         val myDateEnd: String = df.format(myEnd)
+        action.myX = loc.latitude.toFloat()
+        action.myY = loc.longitude.toFloat()
+        action.lojaX = loja.coordenadas.x
+        action.lojaY = loja.coordenadas.y
         action.idLoja = loja.id
         action.abertura = myDateStart
         action.fecho = myDateEnd

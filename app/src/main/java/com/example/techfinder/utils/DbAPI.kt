@@ -1,15 +1,17 @@
 package com.example.techfinder.utils
 
-import android.util.Log
+
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.example.techfinder.objects.*
 import java.io.*
 import java.net.Socket
 import java.sql.Time
 import java.sql.Timestamp
 import java.time.LocalDateTime
-import java.util.concurrent.ThreadLocalRandom.current
+import com.example.techfinder.activities.MainActivity
+import java.io.File
 
-import java.io.FileOutputStream
 
 
 
@@ -141,15 +143,15 @@ class DbAPI {
             val din = DataInputStream(BufferedInputStream(client.getInputStream()))
             dos.writeUTF("alterarPfp")
             dos.writeUTF(username)
-            val file = File(path)
-            val byteArray: ByteArray = ByteArray(124000)
-            val fos = FileInputStream(path)
-            val bos = BufferedInputStream(fos)
-            val bytesRead = client.getOutputStream().write(byteArray, 0, byteArray.size)
+
+
+            val imagefile = File(path)
+            val byteArray = imagefile.readBytes()
             dos.writeInt(byteArray.size)
-            dos.write(byteArray,0,byteArray.size)
-            dos.writeUTF(file.extension)
+            dos.writeUTF(imagefile.extension)
+            dos.write(byteArray)
             dos.flush()
+
             val link = din.readUTF();
             din.close()
             dos.close()
