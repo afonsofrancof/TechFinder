@@ -56,7 +56,7 @@ data class Comentario(
 data class Categoria(
     var nomeCategoria: String = "",
     var voto: Int?,
-    val tipoVoto: TIPOVOTO // -1 voto negativo , 0 nao votou , 1 voto positivo
+    var tipoVoto: TIPOVOTO // -1 voto negativo , 0 nao votou , 1 voto positivo
 )
 
 enum class TIPOVOTO(val value: Int) {

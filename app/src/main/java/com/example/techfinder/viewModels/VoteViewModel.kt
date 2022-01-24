@@ -24,14 +24,24 @@ class VoteViewModel : ViewModel() {
         val listaGetCategoriasString = DbAPI.getCategorias()
         val listaGetCategorias = listaGetCategoriasString.stream()
             .map { cat -> Categoria(cat.nomeCategoria, 0, TIPOVOTO.NOVOTE) }.collect(
-            Collectors.toList()
-        )
+                Collectors.toList()
+            )
         listaCategorias.value?.let {
-            listaGetCategorias.removeAll{ cat ->
-                it.stream().anyMatch{ cat.nomeCategoria==it.nomeCategoria }
+            listaGetCategorias.removeAll { cat ->
+                it.stream().anyMatch { cat.nomeCategoria == it.nomeCategoria }
             }
         }
         listaCategorias.value?.addAll(listaGetCategorias)
+    }
+
+    fun atualizaCategoria(categoria: Categoria, tipoVoto: TIPOVOTO) {
+        categoria.tipoVoto = tipoVoto
+        val newList = listaCategorias.value!!.toMutableList()
+        newList.removeIf { it.nomeCategoria == categoria.nomeCategoria }
+        if (tipoVoto == TIPOVOTO.NOVOTE) {
+            newList.add(categoria)
+        } else newList.add(0, categoria)
+        listaCategorias.value = newList
     }
 
 

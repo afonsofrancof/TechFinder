@@ -20,10 +20,10 @@ class VoteAdapter(private val onClickListener: OnClickListener):
         override fun onBindViewHolder(holder: FeedItemViewHolder, position: Int) {
             val categoria = getItem(position)
             holder.binding.upvote.setOnClickListener {
-                onClickListener.onClickUpvote(categoria)
+                onClickListener.onClickUpvote(categoria,holder)
             }
             holder.binding.downvote.setOnClickListener {
-                onClickListener.onClickDownvote(categoria)
+                onClickListener.onClickDownvote(categoria,holder)
             }
             holder.bind(categoria)
         }
@@ -49,8 +49,8 @@ class VoteAdapter(private val onClickListener: OnClickListener):
         }
 
     interface OnClickListener{
-        fun onClickUpvote(categoria: Categoria)
-        fun onClickDownvote(categoria: Categoria)
+        fun onClickUpvote(categoria: Categoria,holder: FeedItemViewHolder)
+        fun onClickDownvote(categoria: Categoria,holder: FeedItemViewHolder)
     }
 
     }
